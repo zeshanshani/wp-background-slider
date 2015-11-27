@@ -1,0 +1,139 @@
+// ==================================
+// SCSS/_VARIABLES.SCSS
+// ==================================
+
+// 
+// Colors
+// 
+
+$black      : #000000;
+$white      : #ffffff;
+
+$color-prim         : #45c3ee;
+$color-sec          : #dc047b;
+$color-dark         : #71797d;
+$color-light        : #879196;
+
+// Colors: Text
+$color-text-light   : $color-light;
+$color-text-base    : #566065;
+$color-text-dark    : $color-dark;
+
+// Colors: Links
+$color-link-default : $color-prim;
+$color-link-hover   : darken( $color-prim, 8% );
+
+// Colors: Navbar Links
+$navbar-link-color       : #879196;
+$navbar-link-color-hover : darken( $navbar-link-color, 8% );
+
+// Colors: Backgrounds
+$color-prim-bg      : $color-prim;
+$color-sec-bg       : $color-sec;
+$color-dark-bg      : $color-dark;
+$color-light-bg     : $color-light;
+
+$color-dark-bg-text : $white;
+
+// Colors: Forms Background Color
+$color-bg-form : #ebfaff;
+
+// 
+// Font Family
+// 
+
+$f-family-default    : 'Arial', Arial, Helvetica, sans-serif;
+$f-family-sans-serif : $f-family-default;
+$f-family-headings   : $f-family-sans-serif;
+
+// 
+// Font Size
+// 
+
+// Font Size: Base
+$f-size-base         : 18px;
+$f-size-large        : round($f-size-base * 1.1578947368);
+$f-size-small        : round($f-size-base * 0.8421052632);
+
+// Font Size: Buttons
+$f-size-button       : 18px;
+$f-size-button-small : round($f-size-button * 0.8);
+$f-size-button-large : round($f-size-button * 1.2);
+
+// Font Size: Inputs
+$f-size-input        : 18px;
+$f-size-input-small  : 16px;
+$f-size-input-large  : 20px;
+
+// Font Size: Headings
+$f-size-h1    : 30px;
+$f-size-h2    : 24px;
+$f-size-h3    : 20px;
+$f-size-h4    : 18px;
+$f-size-h5    : 16px;
+$f-size-h6    : 14px;
+
+// Font Size: Section Description
+$f-size-sec-desc       : 26px;
+$f-size-sec-desc-large : 30px;
+$f-size-sec-desc-small : 22px;
+
+// 
+// Line Height
+// 
+
+// Line Height: Base
+$line-height-base      : 1.444;
+$line-height-headings  : normal;
+
+// 
+// Fonts Weight
+// 
+
+$f-weight-thin         : 100;
+$f-weight-extra-light  : 200;
+$f-weight-light        : 300;
+$f-weight-normal       : 400;
+$f-weight-medium       : 500;
+$f-weight-semi-bold    : 600;
+$f-weight-bold         : 700;
+
+// 
+// Media Query Sizes
+// 
+
+$media-x-large : 1400px;
+$media-large   : 991px;
+$media-medium  : 767px;
+$media-small   : 480px;
+
+// 
+// Container Size
+// 
+
+$container-width       : 1024px;
+$gutter                : 20px;
+
+// 
+// Paths
+// 
+
+// Path: Images
+$path-image   : 'assets/images';
+
+// Path: Fonts
+$path-font    : 'assets/fonts';
+
+// 
+// Border Radius
+// 
+
+$border-radius-base  : 5px;
+$border-radius-small : 3px;
+$border-radius-large : 7px;
+
+// 
+// Transitions
+// 
+
+$transition-base : '0.25s all ease-in-out';

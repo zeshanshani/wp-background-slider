@@ -1,0 +1,19 @@
+/* Copy This Styling to your Stylesheet */
+.banner {
+  position: relative;
+}
+.banner__image {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  height: 510px;
+}
+.banner__inner {
+  margin-bottom: 0;
+}
+@media screen and (max-width: 991px) {
+  .banner__image {
+    height: 0;
+    padding-bottom: 56.6%;
+  }
+}

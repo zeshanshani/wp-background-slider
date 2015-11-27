@@ -1,0 +1,316 @@
+// ==================================
+// SCSS/_MIXINS.SCSS
+// ==================================
+
+// ==================================
+// Table of Contents
+// 
+// 01) Spacing
+// 02) Background Image
+//   i) Background Image Full
+//   ii) Background Image Only
+// 03) All Colors
+// 04) All Heading Colors
+// 05) Breakpoints
+// 06) Opacity
+// 07) Vertically Centered
+// 08) Position
+// 09) Background Position
+// 10) Auto Center Vertically
+// 11) Pixel to Percentage
+// 
+// ==================================
+
+// Spacing
+// ==================================
+
+// 
+// Creates spacing classes for paddings and margins
+// 
+// $type      = padding, margin
+// $multiple  = 1, 2, 5, 10... ; e.g. mt5, mt10, mt15...
+// $end       = 10, 20, 50... ; Number of times loop runs.
+// $direction = top, right, bottom, left ; set the direction
+// 
+
+@mixin spacing ( $type, $multiple, $end, $direction ) {
+  $class: m;
+
+  @if $type == padding {
+    $class: p;
+  } @else {
+    $class: m;
+  }
+
+  @for $i from 1 through $end {
+    @if $direction == top {
+      .#{$class}t#{$multiple * $i} {#{$type}-top: 1px*($multiple * $i); }
+    } @else if $direction == bottom {
+      .#{$class}b#{$multiple * $i} {#{$type}-bottom: 1px*($multiple * $i); }
+    } @else if $direction == left {
+      .#{$class}l#{$multiple * $i} {#{$type}-left: 1px*($multiple * $i); }
+    } @else if $direction == right {
+      .#{$class}r#{$multiple * $i} {#{$type}-left: 1px*($multiple * $i); }
+    }
+  }
+}
+
+// Background Image
+// ==================================
+
+// 
+// $path-image variable should be in your _variables.scss file, e.g. 
+// $path-image: '../images'
+// 
+
+@mixin bg-img-full ( $path, $color: transparent, $repeat: no-repeat, $position: 0 0 ) {
+  background: $color url('#{$path-image}/#{$path}') $repeat $position;
+}
+
+@mixin bg-img-only ( $path ) {
+  background-image: url('#{$path-image}/#{$path}');
+}
+
+// All Colors
+// ==================================
+
+// 
+// Replace all text color inside an element. 
+// Useful to use on dark background to achieve light text color
+// 
+
+@mixin all-colors ( $color ) {
+  color: $color;
+
+  h1, h2, h3, h4, h5, h6, a {
+    color: $color;
+  }
+}
+
+// All Headings Colors
+// ==================================
+
+// 
+// Replace all headings color inside an element. 
+// Useful to use on dark background to achieve light headings color
+// 
+
+@mixin all-headings-colors( $color ) {
+  h1, h2, h3, h4, h5, h6 {
+    color: $color;
+  }
+}
+
+// Rem with pixel fallback Mixin
+// ==================================
+
+@function calculate-rem ($size) {
+  $rem-size: $size / 10px;
+  @return $rem-size * 1rem;
+}
+
+@mixin font-size ($size) {
+  font-size: $size;
+  font-size: calculate-rem($size);
+}
+
+// Breakpoints
+// ==================================
+
+// Media Only 
+
+@mixin media ( $width, $upper: false ) {
+  @if $upper == true {
+    @media screen and ( min-width: $width + 1 ) {
+      @content;
+    }
+  } @else {
+    @media screen and ( max-width: $width ) {
+      @content;
+    }
+  }
+}
+
+// Max Width
+
+// 
+// Default following variables in your _variabls.scss file:
+// $media-exlarge : 1400px;
+// $media-large   : 992px;
+// $media-medium  : 767px;
+// $media-small   : 480px;
+// 
+
+@mixin bp-x-large {
+  @media screen and (max-width: $media-x-large) {
+    @content;
+  }
+}
+
+@mixin bp-large {
+  @media screen and (max-width: $media-large) {
+    @content;
+  }
+}
+
+@mixin bp-medium {
+  @media screen and (max-width: $media-medium) {
+    @content;
+  }
+}
+
+@mixin bp-small {
+  @media screen and (max-width: $media-small) {
+    @content;
+  }
+}
+
+// Min Width
+
+@mixin bp-x-large-min {
+  @media screen and (min-width: $media-x-large + 1) {
+    @content;
+  }
+}
+
+@mixin bp-large-min {
+  @media screen and (min-width: $media-large + 1) {
+    @content;
+  }
+}
+
+@mixin bp-medium-min {
+  @media screen and (min-width: $media-medium + 1) {
+    @content;
+  }
+}
+
+@mixin bp-small-min {
+  @media screen and (min-width: $media-small + 1) {
+    @content;
+  }
+}
+
+// Opacity
+// ==================================
+
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+// Vertically Centered
+// ==================================
+
+// 
+// $height: add fixed height (must)
+// $selector: add child selector to assign "vertical-align: middle;" (optional)
+//            
+
+@mixin vertical-center( $height, $selector: null ) {
+  display: block;
+  height: $height;
+
+  @if $selector != null {
+    #{$selector} {
+      vertical-align: middle;
+    }
+  }
+
+  &:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+  }
+}
+
+// Position
+// ==================================
+
+@mixin position ( $position: 'absolute', $width: null, $height: null, $top: null, $right: null, $bottom: null, $left: null, $index: null ) {
+  position: #{$position};
+  width: $width;
+  height: $height;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+  z-index: $index;
+}
+
+// Background Position
+// ==================================
+
+@mixin background ( $color: null, $repeat: null, $size: null, $attachment: null, $position: null ) {
+  background-color: $color;
+  background-repeat: #{$repeat};
+  background-size: #{$size};
+  background-attachment: #{$attachment};
+  background-position: $position;
+}
+
+// Background Opacity
+// ==================================
+
+@mixin background-opacity ( $color, $opacity: 0.85 ) {
+  background-color: $color;
+  background-color: rgba($color, $opacity);
+}
+
+// Auto Center Vertically
+// ==================================
+
+// 
+// The element should have position: absolute/fixed
+// 
+// Only add Width and Height of the element.
+// Set $size-add to true if you want to generate width and height of the element
+// Set $position to true if you want to generate vertical positioning
+// It will position the element vertically centered
+// 
+// After that, add a class of "pos-mid" to the element to center it vertically
+// 
+
+@mixin icon-pos-ver-center( $width, $height, $size-add: false, $position: false ) {
+  @if $size-add == true {
+    @include size($width $height);
+  }
+
+  @if $position == true {
+    &.pos-mid {
+      top: 50%;
+      margin-top: - ceil(( $height / 2 ));
+    }
+  }
+}
+
+// Pixel to Percentage
+// ==================================
+
+// 
+// Depending on the container's width
+// Can set $container to any value, e.g. 1000px
+// And the percentage will be calculated
+// based on container's value
+// 
+
+@function per-calc( $width, $container: $container-width ) {
+  @return percentage( $width / $container );
+}
+
+// Center with Width
+// ==================================
+
+// 
+// @param $width specifies the width you want for an element
+// @param $margin-left set either to left, right or auto, default 'auto'
+// @param $margin-right set either to left, right or auto, default 'auto'
+// 
+
+@mixin center-with-width( $width, $margin-left: auto, $margin-right: auto ) {
+  max-width: $width;
+  margin-left: $margin-left;
+  margin-right: $margin-right;
+}

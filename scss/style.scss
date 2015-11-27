@@ -1,0 +1,38 @@
+// Variables Used
+@import "variables";
+// Mixins Used
+@import "mixins";
+
+// Copy the styling below in your SCSS partial
+// ===========================================
+
+/* Copy This Styling to your Stylesheet */
+// Banner Styling
+.banner {
+  position: relative;
+
+  // BEM Element: Image
+  &__image {
+    @include background( $position: center center, $size: cover, $repeat: no-repeat );
+    height: 510px;
+  }
+
+  // BEM Element: Inner
+  &__inner {
+    margin-bottom: 0;
+  }
+
+  // 
+  // Breakpoint Large < 992 px
+  // Set height to 0 and add
+  // padding bottom 56.6% 
+  // 16:9 aspect ratio.
+  // 
+
+  @include bp-large {
+    &__image {
+      height: 0;
+      padding-bottom: 56.6%;
+    }
+  }
+}
